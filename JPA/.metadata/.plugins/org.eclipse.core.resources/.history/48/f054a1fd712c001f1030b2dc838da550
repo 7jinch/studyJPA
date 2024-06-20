@@ -1,0 +1,23 @@
+package jpa.basic.entity;
+
+import javax.persistence.*;
+
+@Entity
+public class OrderItem {
+	// PK
+	@Id
+	@GeneratedValue
+	@Column(name = "ORDER_ITEM_ID")
+	private Long id;
+	
+	// FK
+	@Column(name = "ORDER_ID")
+	private Long orderId;
+	
+	// FK
+	@Column(name = "ITEM_ID")
+	private Long itemId;
+	
+	private int orderPrice;
+	private int count;
+}

@@ -1,0 +1,15 @@
+package jpa.basic;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Manager extends Member {
+	private int year;
+
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+}

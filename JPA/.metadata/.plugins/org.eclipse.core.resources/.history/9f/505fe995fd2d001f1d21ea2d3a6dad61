@@ -1,0 +1,10 @@
+package jpa.basic;
+
+import javax.persistence.*;
+
+@Entity
+public class Parent {
+	@Id
+	@GeneratedValue
+	private Long id;
+}

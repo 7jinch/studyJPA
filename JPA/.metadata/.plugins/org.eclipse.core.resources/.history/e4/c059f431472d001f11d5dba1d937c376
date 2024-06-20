@@ -1,0 +1,47 @@
+// src/main/java/jpa.basic/JpaMain.java
+package jpa.basic.main;
+
+import java.util.ArrayList;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import jpa.basic.entity.Album;
+import jpa.basic.entity.Book;
+import jpa.basic.entity.Movie;
+
+public class JpaMain {
+    public static void main( String[] args ) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa_mysql");
+    	EntityManager em = emf.createEntityManager();
+    	EntityTransaction tx = em.getTransaction();
+    	tx.begin();
+    	
+    	try {
+    		Album a = new Album();
+    		a.setArtist("오타니");
+    		em.persist(a);
+    		
+    		Book b = new Book();
+    		b.setAuthor("이대호");
+    		b.setIsbn("2dae5");
+    		em.persist(b);
+    		
+    		List<String> actorList = new ArrayList<>();
+    		Movie m = new Movie();
+    		m.setActor();
+    		m.setDirector(null);
+    		
+        	tx.commit();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		tx.rollback();
+    	} finally {
+    		em.close();
+    	}
+    	
+    	emf.close();
+    }
+}

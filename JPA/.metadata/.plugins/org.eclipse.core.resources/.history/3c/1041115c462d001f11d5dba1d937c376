@@ -1,0 +1,10 @@
+package jpa.basic.entity;
+
+import javax.persistence.Entity;
+import java.util.*;
+
+@Entity
+public class Movie {
+	private String director;
+	private List<String> actor;
+}

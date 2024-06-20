@@ -1,0 +1,15 @@
+package jpa.basic;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Player extends Member {
+	private String position;
+
+	public String getPposition() {
+		return position;
+	}
+	public void setPposition(String position) {
+		this.position = position;
+	}
+}

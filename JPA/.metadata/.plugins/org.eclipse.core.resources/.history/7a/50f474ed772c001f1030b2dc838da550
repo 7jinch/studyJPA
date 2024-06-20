@@ -1,0 +1,8 @@
+package jpa.basic;
+
+import javax.persistence.*;
+
+@Entity
+public class Team {
+
+}

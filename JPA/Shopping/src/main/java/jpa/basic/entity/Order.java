@@ -1,0 +1,61 @@
+package jpa.basic.entity;
+
+import java.time.LocalDateTime;
+import java.util.*;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ORDERS")
+public class Order {
+	// PK
+	@Id
+	@GeneratedValue
+	@Column(name = "ORDER_ID")
+	private Long id;
+	
+	// FK
+	@ManyToOne(fetch = FetchType.LAZY) // @ManyToOne의 기본값은 EAGER이기 때문에 LAZY로 변경하기
+	@JoinColumn(name = "MEMBER_ID")
+	private Member member;
+	
+	private LocalDateTime orderDate; // 주문 시간
+	
+	@Enumerated(EnumType.STRING)
+	private OrderStatus status;
+	
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // OrderItem도 함께 영속 상태로 만들기
+	private List<OrderItem> orderItems = new ArrayList<>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public LocalDateTime getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(LocalDateTime orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
+	}
+}

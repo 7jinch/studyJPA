@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;cascade&apos;&#x0D;&#x0A;- Original project: &apos;cascade&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     jpa.basic.Member.java&#x0D;&#x0A;     jpa.basic.RoleType.java&#x0D;&#x0A;     jpa.basic.Team.java" description="Delete elements" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;jpa.basic{RoleType.java" element2="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;jpa.basic{Member.java" element3="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;jpa.basic{Team.java" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1718775164590" subPackages="false" version="1.0"/>
+</session>

@@ -1,0 +1,8 @@
+package jpa.basic;
+
+import java.time.LocalDateTime;
+
+public class Period {
+	private LocalDateTime startDate; // 근무시작일
+	private LocalDateTime endDate; // 근무종료일
+}

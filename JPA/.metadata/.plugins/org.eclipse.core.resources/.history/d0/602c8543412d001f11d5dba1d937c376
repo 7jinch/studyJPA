@@ -1,0 +1,13 @@
+package jpa.basic;
+
+public class Player extends Member {
+	private String potion;
+
+	public String getPotion() {
+		return potion;
+	}
+
+	public void setPotion(String potion) {
+		this.potion = potion;
+	}
+}

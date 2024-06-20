@@ -1,0 +1,7 @@
+package jpa.basic;
+
+public class Adress {
+	private String city; // 시
+	private String street; // 번지
+	private String zipcode; // 우편번호
+}

@@ -1,0 +1,12 @@
+package jpa.basic.entity;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import java.util.*;
+
+@Entity
+@DiscriminatorValue("M")
+public class Movie extends Item {
+	private String director;
+	private List<String> actor;
+}

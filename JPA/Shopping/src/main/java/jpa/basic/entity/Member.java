@@ -12,10 +12,16 @@ public class Member {
 	private Long id;
 	
 	private String name;
-	private String city;
-	private String street;
-	private String zipcode;
 	
+	@Embedded
+	private Address address;
+	
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	// @OneToMany의 fetchType의 기본값은 LAZY
 	// Orders도 함께 영속 상태롤 만들기
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -39,23 +45,4 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getStreet() {
-		return street;
-	}
-	public void setStreet(String street) {
-		this.street = street;
-	}
-	public String getZipcode() {
-		return zipcode;
-	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-	
 }

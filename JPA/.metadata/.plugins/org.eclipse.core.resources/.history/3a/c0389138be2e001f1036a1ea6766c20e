@@ -1,0 +1,8 @@
+package jpa.basic.entity;
+
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class Address {
+
+}

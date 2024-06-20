@@ -8,8 +8,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import jpa.basic.entity.Address;
 import jpa.basic.entity.Album;
 import jpa.basic.entity.Book;
+import jpa.basic.entity.Member;
 import jpa.basic.entity.Movie;
 
 public class JpaMain {
@@ -34,6 +36,17 @@ public class JpaMain {
     		m.setActor("김타니");
     		m.setDirector("뉴진스");
     		em.persist(m);
+    		
+    		Address address = new Address();
+    		address.setCity("달나라");
+    		address.setStreet("고요의 바다");
+    		address.setZipcode("123456789");
+    		
+    		Member member = new Member();
+    		member.setAddress(address);
+    		
+    		em.persist(member);
+    		
     		
         	tx.commit();
     	} catch (Exception e) {

@@ -1,0 +1,37 @@
+package jpa.jpql.entity;
+
+import javax.persistence.*;
+
+@Entity // @Entity: JPA가 관리할 객체
+public class Member {
+	@Id // @Id: 데이터베이스의 PK와 매핑
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 생성하는데 기준은 DB
+	@Column(name = "MEMBER_ID") // DB에 매핑할 컬럼명
+	private Long id;
+	
+	private String username;
+	private int age;
+	
+	@ManyToOne // "이건 FK다"
+	@JoinColumn(name = "TEAM_ID") // 연관 관계일 경우 DB의 테이블과 연결할 컬럼명
+	private Team team; // 자바스럽게 객체 자체를 담기
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+}

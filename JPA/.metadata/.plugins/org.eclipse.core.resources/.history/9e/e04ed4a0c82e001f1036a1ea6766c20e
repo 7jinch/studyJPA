@@ -1,0 +1,30 @@
+package jpa.jpql.main;
+
+import javax.persistence.*;
+
+public class JpaMain {
+	public static void main(String[] args) {
+		// EntityManagerFactory 생성
+		// persistence.xml의 유닛 구분 이름을 넣어줌
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa_mysql");
+
+		// EntityManager 하나 생성
+		EntityManager em = emf.createEntityManager();
+		
+		// 트랜잭션 받아오기
+		EntityTransaction tx = em.getTransaction();
+		tx.begin(); // 트랜잭션 시작
+		
+		try {
+			
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			em.close();
+		}
+		
+		emf.close();
+	}
+}

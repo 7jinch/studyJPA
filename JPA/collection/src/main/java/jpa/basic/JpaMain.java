@@ -15,14 +15,42 @@ public class JpaMain {
     	tx.begin();
     	
     	try {
-    		Member m = new Member();
-    		m.setUserName("오타니");
-    		m.setAddress(new Address("시티1", "스트리트1", "집코드1"));
-    		m.getFavoriteFoods().add("치킨");
-    		m.getFavoriteFoods().add("햄버거");
-    		m.getFavoriteFoods().add("피자");
+    		Member member = new Member();
+    		member.setUserName("오타니");
+    		member.setAddress(new Address("시티1", "스트리트1", "집코드1"));
+    		member.getFavoriteFoods().add("치킨");
+    		member.getFavoriteFoods().add("햄버거");
+    		member.getFavoriteFoods().add("피자");
+    		member.getAddressHistory().add(new Address("뿌싼", "해은대", "777"));
+    		member.getAddressHistory().add(new Address("뿌싼", "강알리", "7777777"));
+
+    		em.persist(member);
     		
-    		em.persist(m);
+    		em.flush();
+    		em.clear();
+    		
+    		System.out.println("=====조회=====");
+    		Member findMember = em.find(Member.class, member.getId());
+
+    		List<Address> addressesHistory = findMember.getAddressHistory();
+    		for(Address a : addressesHistory) {
+    			System.out.println("주소: " + a.getCity());
+    		}
+    		
+    		Set<String> favoriteFoods = findMember.getFavoriteFoods();
+    		for(String s : favoriteFoods) {
+    			System.out.println(s);
+    		}
+    		
+    		System.out.println("=====수정=====");
+    		findMember.getFavoriteFoods().remove("치킨");
+    		findMember.getFavoriteFoods().add("비빔밥");
+    		
+    		System.out.println("=====JPQL 테스트=====");
+    		em.createQuery("select m from Member m where m.userName like '%gil%'", Member.class);
+    		
+    		// 삭제하고 추가
+    		// 이퀄스랑 해시코드 재정의 해야 함
     		
         	tx.commit();
     	} catch (Exception e) {

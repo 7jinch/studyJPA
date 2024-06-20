@@ -1,0 +1,54 @@
+// src/main/java/jpa.basic/JpaMain.java
+package jpa.basic;
+
+import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+public class JpaMain {
+    public static void main( String[] args ) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa_mysql");
+    	EntityManager em = emf.createEntityManager();
+    	EntityTransaction tx = em.getTransaction();
+    	tx.begin();
+    	
+    	try {
+    		Member member = new Member();
+    		member.setUserName("오타니");
+    		member.setAddress(new Address("시티1", "스트리트1", "집코드1"));
+    		member.getFavoriteFoods().add("치킨");
+    		member.getFavoriteFoods().add("햄버거");
+    		member.getFavoriteFoods().add("피자");
+    		member.getAddressHistory().add(new Address("뿌싼", "해은대", "777"));
+    		member.getAddressHistory().add(new Address("뿌싼", "강알리", "7777777"));
+    		
+    		em.flush();
+    		em.clear();
+    		
+    		System.out.println("=====조회=====");
+    		Member findMember = em.find(Member.class, member.getId());
+    		
+    		List<Address> addressesHistory = findMember.getAddressHistory();
+    		for(Address a : addressesHistory) {
+    			System.out.println("주소: " + a.getCity());
+    		}
+    		
+    		Set<String> favoriteFoods = findMember.getFavoriteFoods();
+    		for(String s : favoriteFoods) {
+    			System.out.println(s);
+    		}
+    		
+    		em.persist(member);
+    		
+        	tx.commit();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		tx.rollback();
+    	} finally {
+    		em.close();
+    	}
+    	emf.close();
+    }
+}

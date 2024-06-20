@@ -1,0 +1,30 @@
+package jpa.jpql.main;
+
+import javax.persistence.*;
+
+import jpa.jpql.entity.Member;
+
+public class JpaMain {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa_mysql"); // EntityManagerFactory 생성(persistence.xml의 유닛 구분 이름을 넣어줌)
+		EntityManager em = emf.createEntityManager(); // EntityManager 하나 생성
+		EntityTransaction tx = em.getTransaction(); // 트랜잭션 받아오기
+		tx.begin(); // 트랜잭션 시작
+		
+		try {
+			Member member = new Member();
+			member.setUsername("오타니");
+			
+			em.persist(member);
+			
+			tx.commit(); // 성공적으로 처리되면 트랜잭션 커밋
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			em.close();
+		}
+		
+		emf.close();
+	}
+}

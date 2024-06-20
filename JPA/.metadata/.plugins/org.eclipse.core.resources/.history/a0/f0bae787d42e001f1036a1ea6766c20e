@@ -1,0 +1,5 @@
+package jpa.jpql.main;
+
+public class MemberDTO {
+
+}

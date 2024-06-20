@@ -1,0 +1,5 @@
+package jpa.jpql;
+
+public class JpaMain {
+
+}

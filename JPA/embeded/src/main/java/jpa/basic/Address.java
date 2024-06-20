@@ -2,7 +2,7 @@ package jpa.basic;
 
 import javax.persistence.Embeddable;
 
-//@Embeddable
+@Embeddable
 public class Address {
 	private String city; // 시
 	private String street; // 번지

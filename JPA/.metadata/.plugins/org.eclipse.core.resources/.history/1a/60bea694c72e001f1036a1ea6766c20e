@@ -1,0 +1,5 @@
+package jpa.jpql.entity;
+
+public class Member {
+
+}

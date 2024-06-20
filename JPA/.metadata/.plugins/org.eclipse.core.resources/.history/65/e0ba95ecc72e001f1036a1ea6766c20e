@@ -1,0 +1,14 @@
+package jpa.jpql.entity;
+
+import javax.persistence.*;
+
+@Entity
+public class Member {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // DB 기준으로 생성
+	@Column(name = "MEMBER_ID") // DB에 매핑할 컬럼명
+	private Long id;
+	
+	private String username;
+	private int age;
+}
